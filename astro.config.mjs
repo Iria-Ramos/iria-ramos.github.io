@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://iria-ramos.github.io',
+    base: '/portafolio',
     vite: {    
         plugins: [tailwindcss()],  
     },
