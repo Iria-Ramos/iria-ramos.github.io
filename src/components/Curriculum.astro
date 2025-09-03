@@ -1,0 +1,58 @@
+---
+import Box from "./Box.astro";
+import Chip from "./Chip.astro";
+import Job from "./Job.astro";
+
+const blueIcons = ["angular", "nestJS", "ionic", "django", "java", "kotlin"];
+const sareIcons = ["react", "nestJS"];
+const seidIcons = ["react", "wordpress"]
+
+const blue = {
+    company: "BLUE Connecting Emotions",
+    date: "Julio 2023 – Actualidad",
+    icons: blueIcons,
+    description: "Participé en el desarrollo de aplicaciones web y móviles de principio a fin, utilizando tecnologías como Angular, Ionic, NestJS, Django, Java y Kotlin. Mis tareas incluyeron la administración y optimización de bases de datos, configuración de Firebase para notificaciones push, despliegue en OVH y Docker, implementación de CI/CD con Jenkins y SonarQube, así como la refactorización de proyectos siguiendo Clean Code y Clean Architecture. También desarrollé una aplicación para smartwatch con comunicación en tiempo real mediante Kotlin y MQTT."
+}
+
+const sare = {
+    company: "Sarenet",
+    date: "Marzo 2023 – Junio 2023",
+    icons: sareIcons,
+    description: "Desarrollo de aplicación web en ReactJS con backend en NestJS, integrada con la API de Darktrace Detect para monitorización en tiempo real. Participación en proyectos ágiles con Scrum y  configuración de routing y firewalls para reforzar la seguridad de red." 
+}
+
+const seid = {
+    company: "Deusto SEIDOR",
+    date: "Junio 2021 – Septiembre 2021",
+    icons: seidIcons,
+    description: "Desarrollo de interfaces web en ReactJS optimizando UX y rendimiento, gestión y personalización de sitios en  WordPress, además de redacción de documentación técnica para facilitar la transferencia de conocimiento." 
+    }
+---
+
+<section class="flex w-full flex-col min-h-[80vh] mb-10">
+    <section
+        id="cv"
+        class="w-full h-fit py-12 border-t border-t-blue-50 flex justify-between"
+    >
+        <h3
+            class="w-fit h-fit text-4xl md:text-5xl font-medium text-[var(--white)] mb-6 ml-4"
+        >
+            CV
+        </h3>
+        <a href="/pdf/CV_Iria_Ramos.pdf" download="CV_Iria_Ramos.pdf">
+            <button
+                class="flex-wrap w-fit h-fit justify-start align-top bg-blue-100/70 hover:bg-blue-100 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-[0c2d48] dark:hover:bg-[145da0] dark:focus:ring-[114978] cursor-pointer"
+                >Descargar CV</button
+            >
+        </a>
+    </section>
+    <div
+        class="grid grid-rows-3 gap-x-4 gap-y-6 mx-auto top-8
+         sm:grid-rows-3 lg:grid-rows-3
+         auto-rows-fr"
+    >
+        <Job job={blue}/>
+        <Job job={sare}/>
+        <Job job={seid}/>
+    </div>
+</section>

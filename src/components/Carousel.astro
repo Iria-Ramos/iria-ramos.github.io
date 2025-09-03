@@ -1,0 +1,166 @@
+---
+// src/components/Carousel.astro
+
+const cards = [
+  {
+    title: "MD-Notes",
+    description:
+      "Una aplicación web full-stack que permite a los usuarios crear, editar y subir archivos Markdown (.md)",
+    href:"https://github.com/Iria-Ramos/md-notes"
+  },
+  {
+    title: "EncrytionApp",
+    description:
+      "Un proyecto que implementa un par de métodos de encriptación simétrica con una interfaz gráfica (GUI).",
+    href:"https://github.com/Iria-Ramos/EncryptionApp"
+  },
+  {
+    title: "ReadToday",
+    description:
+      "Aplicación full-stack para leer feeds RSS, creada en colaboración con otros desarrolladores.",
+    href:"https://github.com/javierorbe/readtoday"
+  }
+];
+---
+
+<div
+  id="carouselContainer"
+  class="relative w-full max-w-xl mx-auto overflow-hidden"
+  role="region"
+  aria-label="Feature cards carousel"
+>
+  <!-- Slides -->
+  <div
+    id="slides"
+    class="flex duration-500 ease-in-out touch-pan-x scroll-smooth snap-x snap-mandatory"
+    style="transform: translateX(calc(var(--current) * -100%));"
+  >
+    {cards.map((card, idx) => (
+      <a
+        class="w-full flex-shrink-0 p-4 snap-start"
+        role="group"
+        href={card.href}
+        aria-roledescription="slide"
+        aria-label={`Slide ${idx + 1} of ${cards.length}`}
+      >
+        <div class="bg-blue-100/70 shadow-lg rounded-2xl ml-[26px] p-6 w-[90%] h-48 flex flex-col justify-center">
+          <h2 class="text-xl font-bold mb-2">{card.title}</h2>
+          <p class="text-gray-600">{card.description}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Prev / Next Buttons -->
+  <button
+    id="prev"
+    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100"
+    aria-label="Previous slide"
+  >
+    ◀
+  </button>
+  <button
+    id="next"
+    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100"
+    aria-label="Next slide"
+  >
+    ▶
+  </button>
+
+  <!-- Pagination Dots -->
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    {cards.map((_, idx) => (
+      <button
+        class="w-2 h-2 rounded-full bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        data-dot={idx}
+        aria-label={`Go to slide ${idx + 1}`}
+      />
+    ))}
+  </div>
+</div>
+
+<script type="module">
+  const container = document.getElementById("carouselContainer");
+  const slidesEl = document.getElementById("slides");
+  const nextBtn = document.getElementById("next");
+  const prevBtn = document.getElementById("prev");
+  const dots = Array.from(document.querySelectorAll("[data-dot]"));
+
+  let index = 0;
+  const total = slidesEl.children.length;
+  let autoPlayTimer;
+  const AUTO_PLAY_INTERVAL = 2000; // 5 seconds
+
+  function update() {
+    slidesEl.style.setProperty("--current", index);
+    dots.forEach((btn, i) => {
+      btn.classList.toggle("bg-blue-600", i === index);
+      btn.classList.toggle("bg-gray-300", i !== index);
+    });
+  }
+
+  function next() {
+    index = (index + 1) % total;
+    update();
+  }
+
+  function prev() {
+    index = (index - 1 + total) % total;
+    update();
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayTimer = setInterval(next, AUTO_PLAY_INTERVAL);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayTimer);
+  }
+
+  nextBtn.addEventListener("click", () => {
+    next();
+    startAutoPlay();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    prev();
+    startAutoPlay();
+  });
+
+  dots.forEach((dot, i) =>
+    dot.addEventListener("click", () => {
+      index = i;
+      update();
+      startAutoPlay();
+    })
+  );
+
+  // Pause on hover
+  container.addEventListener("mouseenter", stopAutoPlay);
+  container.addEventListener("mouseleave", startAutoPlay);
+
+  // Keyboard support
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      nextBtn.click();
+    } else if (e.key === "ArrowLeft") {
+      prevBtn.click();
+    }
+  });
+
+  // Touch-swipe support
+  let startX = 0;
+  slidesEl.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  slidesEl.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (dx > 40) prevBtn.click();
+    if (dx < -40) nextBtn.click();
+  });
+
+  // Initialize
+  update();
+  startAutoPlay();
+</script>

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+hr {
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    color: azure;
+}
+
+.center {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}

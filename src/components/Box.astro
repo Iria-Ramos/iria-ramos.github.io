@@ -1,0 +1,15 @@
+---
+export interface Props {
+    position: string;
+    rectangle?: boolean
+}
+
+const { position, rectangle } = Astro.props
+const wdt = rectangle ? "3xl" : "64"
+---
+
+<section
+    class=`w-${wdt} h-64 bg-blue-100/35 rounded-2xl flex items-${position} justify-${position}`
+>
+    <slot />
+</section>

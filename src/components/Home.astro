@@ -1,0 +1,100 @@
+---
+import Box from "./Box.astro";
+import SocialIcons from "./SocialIcons.astro";
+
+const languages = [
+  "javaScript",
+  "HTML5",
+  "CSS3",
+  "typeScript",
+  "python",
+  "bash",
+  "kotlin",
+  "java",
+  "mySQL",
+  "postgreSQL",
+  "mongoDB",
+  "mariaDB"
+]
+
+const technologies = [
+  "astro",
+  "react",
+  "tailwindCSS",
+  "nestJS",
+  "nodeJS",
+  "git",
+  "angular",
+  "django",
+  "ionic",
+  
+];
+---
+
+<section id="home" class="flex-row ml-4">
+    <article>
+        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">
+            Hola, me llamo Iria y soy
+        </h2>
+        <div class="flex flex-row justify-between items-center">
+            <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
+                Ingeniera de software
+            </h3>
+            <section class="-mt-6">
+                <SocialIcons />
+            </section>
+        </div>
+        <p>
+            Me encanta dar vida a ideas digitales. Construyo aplicaciones web
+            (frontend y backend) y móviles que combinan funcionalidad, diseño y
+            rendimiento. Mi objetivo es crear productos que no solo funcionen
+            bien, sino que también generen experiencias memorables para los
+            usuarios.
+        </p>
+    </article>
+    <div class="grid grid-cols-2 grid-rows-1 gap-10 mx-auto">
+        <Box position="center">
+            <div class="grid grid-cols-4 grid-rows-3">
+                {languages.map((lan) => (
+                    <div class="flex flex-col h-fit items-center gap-1 group m-5">
+                    <img
+                        src={`/svg/${lan}.svg`}
+                        alt={lan}
+                        title={lan.charAt(0).toUpperCase() + lan.slice(1)}
+                        class="h-7 w-auto object-contain transition-transform group-hover:scale-150"
+                        width="30"
+                        height="30"
+                        loading="lazy"
+                    />
+                    </div>
+                ))}
+            </div>
+        </Box>
+        <Box position="center">
+            <div class="grid grid-cols-3 grid-rows-2">
+                {technologies.map((tech) => (
+                    <div class="flex flex-col h-fit items-center gap-1 group m-5">
+                    <img
+                        src={`/svg/${tech}.svg`}
+                        alt={tech}
+                        title={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                        class="h-7 w-auto object-contain transition-transform group-hover:scale-150"
+                        width="30"
+                        height="30"
+                        loading="lazy"
+                    />
+                    
+                    </div>
+                ))}
+            </div>
+        </Box>
+    </div>
+</section>
+
+<style>
+    #home {
+        display: flex;
+        flex-flow: row wrap;
+        height: 80vh;
+    }
+</style>

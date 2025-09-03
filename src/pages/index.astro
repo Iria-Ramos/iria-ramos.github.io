@@ -1,0 +1,22 @@
+---
+import Header from '../components/Header.astro'
+import Home from '../components/Home.astro';
+import Footer from '../components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
+import Projects from '../components/Projects.astro';
+import Curriculum from '../components/Curriculum.astro';
+import Contact from '../components/Contact.astro';
+
+---
+
+<Layout>
+	<Header />
+	<div class="flex flex-col items-center gap-8 mx-auto max-w-4xl">
+		<Home />
+		<Projects />
+		<Curriculum />
+		<Contact />
+	</div>
+	<Footer />
+</Layout>
+
