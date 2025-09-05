@@ -1,19 +1,27 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="contact" class="w-full py-12 border-t border-t-blue-50">
   <div class="max-w-5xl mx-auto">
     <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
-      Contacto
+      {t('con.title')}
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="text-[var(--white-icon)]">
         <p class="mb-4">
-          ¿Un proyecto en mente? Escríbeme y lo construimos juntos.
+          {t('con.desc')}
         </p>
         <div class="flex items-center gap-2">
-          <span>Dirección:</span>
-          <span class="text-[var(--white)]">Bilbao, España</span>
+          <span>
+            {t('con.loc')}
+          </span>
+          <span class="text-[var(--white)]">
+            {t('con.loc.place')}
+          </span>
         </div>
       </div>
 
@@ -27,20 +35,20 @@
           <input
             type="text"
             name="from_name"
-            placeholder="Nombre"
+            placeholder={t('con.name')}
             required
             class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <input
             type="email"
             name="reply_to"
-            placeholder="Correo"
+            placeholder={t('con.email')}
             required
             class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <textarea
             name="message"
-            placeholder="Mensaje"
+            placeholder={t('con.mess')}
             rows="6"
             required
             class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
@@ -49,7 +57,7 @@
             type="submit"
             class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100"
           >
-            Enviar
+            {t('con.send')}
           </button>
         </form>
         <div

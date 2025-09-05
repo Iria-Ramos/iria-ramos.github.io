@@ -1,23 +1,24 @@
 ---
-// src/components/Carousel.astro
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const cards = [
   {
     title: "MD-Notes",
-    description:
-      "Una aplicación web full-stack que permite a los usuarios crear, editar y subir archivos Markdown (.md)",
+    description: t('card.notes.desc'),
     href:"https://github.com/Iria-Ramos/md-notes"
   },
   {
     title: "EncrytionApp",
-    description:
-      "Un proyecto que implementa un par de métodos de encriptación simétrica con una interfaz gráfica (GUI).",
+    description: t('card.enc.desc'),
     href:"https://github.com/Iria-Ramos/EncryptionApp"
   },
   {
     title: "ReadToday",
-    description:
-      "Aplicación full-stack para leer feeds RSS, creada en colaboración con otros desarrolladores.",
+    description: t('card.read.desc'),
     href:"https://github.com/javierorbe/readtoday"
   }
 ];
