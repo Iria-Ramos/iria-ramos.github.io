@@ -1,4 +1,3 @@
-// src/scripts/initNav.ts
 export function initNav(navId: string) {
   const nav = document.querySelector(`nav.${navId}`) as HTMLElement | null;
   const maxScroll = 1000;
@@ -37,23 +36,26 @@ export function initNav(navId: string) {
     { passive: true }
   );
 
-  // smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
-      e.preventDefault();
       const target = e.currentTarget as HTMLAnchorElement;
-      const targetId = target.getAttribute("href")?.substring(1) || "";
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+      const url = new URL(target.href);
+      const targetId = url.hash.substring(1);
+
+      if (targetId) {
+        e.preventDefault();
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
       }
     });
   });
 
-  // highlight active section
+  // highlight active section (language-aware)
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a[href^='#']");
+    const navLinks = document.querySelectorAll("nav a[href*='#']");
     const observerOptions = { threshold: 0.6 };
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
@@ -61,7 +63,7 @@ export function initNav(navId: string) {
         if (entry.isIntersecting) {
           navLinks.forEach((link) => link.classList.remove("active"));
           const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+          const activeLink = document.querySelector(`nav a[href$="#${id}"]`);
           if (activeLink) {
             activeLink.classList.add("active");
           }
@@ -69,10 +71,8 @@ export function initNav(navId: string) {
       });
     };
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((section) => observer.observe(section));
   });
+
 }

@@ -6,12 +6,22 @@ import { languages } from '../i18n/ui'
 <div class="flex w-full max-w-sm mx-auto align-middle justify-center">
   <select
     id="languages"
-    class="text-sm rounded-lg block w-full fill-black dark:fill-black"
+    class="text-sm rounded-lg block w-full appearance-none"
   >
     {Object.entries(languages).map(([code, label]) => (
       <option value={`/${code}/`}>{label}</option>
     ))}
   </select>
+  <svg
+    class="w-5 h-5 text-black relative translate-y-1 pointer-events-none"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M19 9l-7 7-7-7" />
+  </svg>
 </div>
 
 <script>
@@ -33,3 +43,10 @@ import { languages } from '../i18n/ui'
     window.location.href = target.value
   })
 </script>
+
+<!-- <style>
+  select {
+    appearance: none;
+    background: url("data:image/svg+xml;utf8,<svg fill='blue' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 0.5rem center/1rem;
+  }
+</style> -->
