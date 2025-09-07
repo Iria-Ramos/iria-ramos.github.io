@@ -9,12 +9,24 @@ const lang = getLangFromUrl(Astro.url);
 <!doctype html>
 <html lang={lang}>
 	<head>
-		<!-- TODO: Add meta tags for SEO -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Iria Ramos - Software Developer</title>
+
+		<meta name="description" content=" Hola, me llamo Iria y soy Ingeniera de software. Me encanta dar vida a ideas digitales. Construyo aplicaciones web (frontend y backend) y móviles que combinan funcionalidad, diseño y rendimiento. Mi objetivo es crear productos que no solo funcionen bien, sino que también generen experiencias memorables para los usuarios.">
+		<meta name="og:title" property="og:title" content="Iria Ramos - Software Developer">
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Hola, me llamo Iria y soy Ingeniera de software. Me encanta dar vida a ideas digitales. Construyo aplicaciones web (frontend y backend) y móviles que combinan funcionalidad, diseño y rendimiento. Mi objetivo es crear productos que no solo funcionen bien, sino que también generen experiencias memorables para los usuarios." />
+		<meta property="og:image" content="https://iria-ramos.github.io/img/Image.png" />
+		<meta name="robots" content="index">
+		<link href="URL" rel="canonical">
+		<link rel="alternate" hreflang="es" href="https://iria-ramos.github.io/es" />
+		<link rel="alternate" hreflang="en" href="https://iria-ramos.github.io/en" />
+		<meta name="geo.region" content="Iberian Peninsula">
+		<meta name="geo.placename" content="Bilbao">
+
 	</head>
 	<body class="m-0 w-[100%] h-[100%] bg-linear-to-b from-[#2e8bc0] via-[#75afd1] to-[#b1d4e0] overflow-y-scroll dark:bg-linear-to-b dark:from-[#0c2d48] dark:via-[#114978] dark:to-[#145da0]">
 		<slot />
