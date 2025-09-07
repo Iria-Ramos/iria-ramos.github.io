@@ -37,25 +37,26 @@ const t = useTranslations(lang);
             name="from_name"
             placeholder={t('con.name')}
             required
-            class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <input
             type="email"
             name="reply_to"
             placeholder={t('con.email')}
             required
-            class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <textarea
             name="message"
             placeholder={t('con.mess')}
             rows="6"
             required
-            class="px-4 py-2  bg-blue-100/35 text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
+            class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
           ></textarea>
           <button
             type="submit"
-            class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100"
+            class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
+            dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)]  dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
           >
             {t('con.send')}
           </button>

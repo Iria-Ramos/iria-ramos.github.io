@@ -16,22 +16,7 @@ const lang = getLangFromUrl(Astro.url);
 		<meta name="generator" content={Astro.generator} />
 		<title>Iria Ramos - Software Developer</title>
 	</head>
-	<body>
+	<body class="m-0 w-[100%] h-[100%] bg-linear-to-b from-[#2e8bc0] via-[#75afd1] to-[#b1d4e0] overflow-y-scroll dark:bg-linear-to-b dark:from-[#0c2d48] dark:via-[#114978] dark:to-[#145da0]">
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(180deg, #2e8bc0 0%, #75afd1 35%, #b1d4e0 100%);
-		overflow-y: scroll;
-
-		/* Dark mode colors */
-		/* background: linear-gradient(180deg, #0c2d48 0%, #114978 35%, #145da0 100%); */
-		
-	}
-</style>

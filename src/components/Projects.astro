@@ -14,8 +14,11 @@ const t = useTranslations(lang);
             {t('pro.title')}
         </h3>
         <Carousel />
+        <!-- -->
         <button
-            class="w-1/2 bg-blue-100/35 rounded-2xl py-2 px-4 space-x-2 ml-56 relative top-3 hover:bg-blue-100 hover:text-[18px] hover:transition-all hover:duration-200"
+            class="w-1/2 py-2 px-4 space-x-2 ml-56 relative top-3 
+                bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
+                dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)]  dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
         >
             <a
                 target="_blank"

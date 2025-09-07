@@ -1,19 +1,21 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import LaguagePicker from "./LaguagePicker.astro";
+import ThemeIcon from "./ThemeIcon.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 ---
 
-<header class="flex flex-row h-[10vh] top-5 sticky align-middle justify-center z-50">
-    <nav class="flex flex-row w-[450px] h-[40px] pr-6 pl-6 align-middle justify-center  rounded-4xl bg-blue-100">
+<header class="flex flex-row w-lg h-[10vh] top-5 sticky align-middle justify-center z-50 mx-auto">
+    <nav class="flex flex-row w-lg h-[40px] pr-6 pl-6 align-middle justify-center  rounded-4xl bg-blue-100">
         <div class="flex flex-row h-fit mt-[7px] gap-5 align-middle">
             <a href={`/${lang}/home/`}> {t('nav.home')} </a>
             <a href={`/${lang}/cv/`}> {t('nav.exp')} </a>
             <a href={`/${lang}/projects/`}> {t('nav.pro')}</a>
             <a href={`/${lang}/contact/`}> {t('nav.con')} </a>
+            <ThemeIcon />
             <LaguagePicker />
         </div>
     </nav>

@@ -44,9 +44,9 @@ const cards = [
         aria-roledescription="slide"
         aria-label={`Slide ${idx + 1} of ${cards.length}`}
       >
-        <div class="bg-blue-100/70 shadow-lg rounded-2xl ml-[26px] p-6 w-[90%] h-48 flex flex-col justify-center">
+        <div class="bg-blue-100/70 dark:bg-[#145da0]/55 shadow-lg rounded-2xl ml-[26px] p-6 w-[90%] h-48 flex flex-col justify-center">
           <h2 class="text-xl font-bold mb-2">{card.title}</h2>
-          <p class="text-gray-600">{card.description}</p>
+          <p class="text-gray-600 dark:text-blue-100/70">{card.description}</p>
         </div>
       </a>
     ))}
