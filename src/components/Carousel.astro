@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Chip from "./Chip.astro";
 
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,44 +10,64 @@ const cards = [
   {
     title: "MD-Notes",
     description: t('card.notes.desc'),
-    href:"https://github.com/Iria-Ramos/md-notes"
+    icons: ["astro", "react", "nestJS", "mySQL"],
+    href:"https://github.com/Iria-Ramos/md-notes",
+    img: "md-notes.png",
+    alt: t('card.notes.alt'),
   },
   {
     title: "EncrytionApp",
     description: t('card.enc.desc'),
-    href:"https://github.com/Iria-Ramos/EncryptionApp"
+    icons: ["python"],
+    href:"https://github.com/Iria-Ramos/EncryptionApp",
+    img: "encrytionapp.png",
+    alt: t('card.enc.alt'),
   },
   {
     title: "ReadToday",
     description: t('card.read.desc'),
-    href:"https://github.com/javierorbe/readtoday"
+    icons: ["java"],
+    href:"https://github.com/javierorbe/readtoday",
+    img: "readtoday.png",
+    alt: t('card.read.alt'),
   }
 ];
 ---
 
 <div
   id="carouselContainer"
-  class="relative w-full max-w-xl mx-auto overflow-hidden"
+  class="relative w-full h-[60%] mx-auto overflow-hidden"
   role="region"
   aria-label="Feature cards carousel"
 >
   <!-- Slides -->
   <div
     id="slides"
-    class="flex duration-500 ease-in-out touch-pan-x scroll-smooth snap-x snap-mandatory"
+    class="flex h-full duration-500 ease-in-out touch-pan-x scroll-smooth snap-x snap-mandatory"
     style="transform: translateX(calc(var(--current) * -100%));"
   >
+  <!-- TODO: Add Chips -->
     {cards.map((card, idx) => (
       <a
-        class="w-full flex-shrink-0 p-4 snap-start"
+        class="w-full h-full flex-shrink-0 p-4 snap-start"
         role="group"
         href={card.href}
         aria-roledescription="slide"
         aria-label={`Slide ${idx + 1} of ${cards.length}`}
       >
-        <div class="bg-blue-100/70 dark:bg-[#145da0]/55 shadow-lg rounded-2xl ml-[26px] p-6 w-[90%] h-48 flex flex-col justify-center">
-          <h2 class="text-xl font-bold mb-2">{card.title}</h2>
-          <p class="text-gray-600 dark:text-blue-100/70">{card.description}</p>
+        <div class="grid grid-cols-3 w-[94%] h-full ml-[26px] p-6 bg-blue-100/70 dark:bg-[#145da0]/55 shadow-lg rounded-2xl">
+          <div>
+            <h2 class="text-xl font-bold mb-2">{card.title}</h2>
+            <div class="flex flex-row flex-wrap mt-4 mb-6">
+              {card.icons.map((icon, idx) => (
+                <Chip icon={icon}/>
+              ))}
+            </div>
+            <p class="text-gray-600 dark:text-blue-100/70">{card.description}</p>
+          </div>
+          <div class="col-span-2 mt-6 object-contain">
+            <img src={`/img/${card.img}`} alt={card.alt} width="500" height="240" class="h-[240px]"/>
+          </div>
         </div>
       </a>
     ))}
@@ -55,14 +76,14 @@ const cards = [
   <!-- Prev / Next Buttons -->
   <button
     id="prev"
-    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100"
+    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100 dark:hover:bg-blue-500"
     aria-label="Previous slide"
   >
     ◀
   </button>
   <button
     id="next"
-    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100"
+    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-transparent rounded-full p-3 hover:bg-blue-100 dark:hover:bg-blue-500"
     aria-label="Next slide"
   >
     ▶
