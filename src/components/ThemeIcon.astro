@@ -50,4 +50,27 @@
 
   :global(.dark) .sun { fill: transparent; }
   :global(.dark) .moon { fill: black; }
+
+  .sun, .moon {
+    transition: fill 0.4s ease, transform 0.5s ease;
+  }
+
+  .sun {
+    transform: rotate(0deg) scale(1);
+  }
+  .moon {
+    transform: rotate(90deg) scale(0.5);
+    opacity: 0;
+  }
+
+  /* When in dark mode */
+  :global(.dark) .sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+  :global(.dark) .moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
 </style>
