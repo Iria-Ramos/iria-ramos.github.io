@@ -26,9 +26,11 @@ const lang = getLangFromUrl(Astro.url);
 		<link rel="alternate" hreflang="en" href="https://iria-ramos.github.io/en" />
 		<meta name="geo.region" content="Iberian Peninsula">
 		<meta name="geo.placename" content="Bilbao">
-
 	</head>
-	<body class="m-0 w-[100%] h-[100%] bg-linear-to-b from-[#2e8bc0] via-[#75afd1] to-[#b1d4e0] overflow-y-scroll dark:bg-linear-to-b dark:from-[#0c2d48] dark:via-[#114978] dark:to-[#145da0]">
+	<body class="m-0 w-full min-h-screen bg-gradient-to-b from-[#59a5d1] via-[#7eb4d3] to-[#b1d4e0] 
+	dark:bg-gradient-to-b dark:from-[#0c2d48] dark:via-[#114978] dark:to-[#145da0] 
+	overflow-y-auto transition-colors duration-500">
 		<slot />
 	</body>
+
 </html>

@@ -8,30 +8,84 @@ const t = useTranslations(lang);
 
 ---
 
-<header class="flex flex-row w-lg h-[10vh] top-5 sticky align-middle justify-center z-50 mx-auto">
-    <nav class="flex flex-row w-lg h-[40px] pr-6 pl-6 align-middle justify-center  rounded-4xl bg-blue-100">
-        <div class="flex flex-row h-fit mt-[7px] gap-5 align-middle">
-            <ThemeIcon />
-            <a href={`/${lang}/#home`} > 
-                {t('nav.home')} 
-            </a>
-            <a href={`/${lang}/#cv`}> 
-                {t('nav.exp')} 
-            </a>
-            <a href={`/${lang}/#projects`}> 
-                {t('nav.pro')}
-            </a>
-            <a href={`/${lang}/#contact`}> 
-                {t('nav.con')} 
-            </a>
-            <LaguagePicker />
+<header class="flex flex-row w-full h-[10vh] top-5 sticky align-middle justify-start md:justify-center z-50 mx-auto px-8">
+    <div class="flex flex-col">
+        <nav class="flex flex-row w-40 md:w-lg h-[40px] align-middle justify-center  rounded-4xl bg-blue-100">
+            <div class="flex flex-row h-fit mt-[7px] gap-5 align-middle">
+                <ThemeIcon />
+                <div class="hidden md:flex items-center gap-6">
+                    <a href={`/${lang}/#home`} > 
+                        {t('nav.home')} 
+                    </a>
+                    <a href={`/${lang}/#cv`}> 
+                        {t('nav.exp')} 
+                    </a>
+                    <a href={`/${lang}/#projects`}> 
+                        {t('nav.pro')}
+                    </a>
+                    <a href={`/${lang}/#contact`}> 
+                        {t('nav.con')} 
+                    </a>
+                </div>
+                <LaguagePicker />
+            </div>
+    
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden p-2 rounded-lg">
+            <!-- Hamburger -->
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                fill="none" viewBox="0 0 24 24" stroke="#145da0">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Close (hidden by default) -->
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden"
+                fill="none" viewBox="0 0 24 24" stroke="#145da0">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Dropdown Panel -->
+        <div id="mobile-menu"
+            class="hidden w-40 h-fit md:hidden flex-col gap-4 mt-2 
+                    bg-blue-100 rounded-xl px-5 py-5 shadow-lg transition-all duration-300">
+            <a href={`/${lang}/#home`} class="w-full text-center">{t("nav.home")}</a>
+            <a href={`/${lang}/#cv`} class="w-full text-center">{t("nav.exp")}</a>
+            <a href={`/${lang}/#projects`} class="w-full text-center">{t("nav.pro")}</a>
+            <a href={`/${lang}/#contact`} class="w-full text-center">{t("nav.con")}</a>
+            </div>
         </div>
-    </nav>
+    </div>
 </header>
 
 <script>
     import { initNav } from "../shared/initNav";
     initNav("header-nav");
+
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
+
+    if(toggle && menu && iconClose && iconOpen) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+          menu.classList.add("flex")
+          iconOpen.classList.toggle("hidden");
+          iconClose.classList.toggle("hidden");
+        });
+    
+        // Close menu when clicking a link
+        menu.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            menu.classList.add("hidden");
+            iconOpen.classList.remove("hidden");
+            iconClose.classList.add("hidden");
+          });
+        });
+    }
 </script>
 
 <style>
@@ -49,7 +103,7 @@ const t = useTranslations(lang);
         content: "";
         position: absolute;
         left: 0;
-        bottom: 5px;
+        bottom: 2px;
         width: 0%;
         height: 2px;
         border-bottom: 2px solid #145da0;

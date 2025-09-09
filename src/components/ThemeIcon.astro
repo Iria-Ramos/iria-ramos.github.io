@@ -10,7 +10,7 @@
 
 
 <script is:inline>
-  const theme = (() => {
+  let theme = (() => {
     const localStorageTheme = localStorage?.getItem("theme") ?? '';
     if (['dark', 'light'].includes(localStorageTheme)) {
       return localStorageTheme;

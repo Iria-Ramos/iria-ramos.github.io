@@ -1,0 +1,11 @@
+---
+export interface Props {
+    position: string;
+}
+
+const { position } = Astro.props
+---
+
+<section class=`max-w-3xl min-h-[50vh] xs:min-h-[40vh] sm:min-h-[30vh] bg-white/55 dark:bg-[#145da0]/55 rounded-2xl flex items-${position} justify-${position}`>
+    <slot />
+</section>

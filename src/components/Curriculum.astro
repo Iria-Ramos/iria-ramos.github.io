@@ -10,52 +10,52 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const blue = {
-    company: 'BLUE Connecting Emotions',
-    date: t('job.blue.date'),
-    icons: blueIcons,
-    description: t('job.blue.desc')
-}
+  company: "BLUE Connecting Emotions",
+  date: t("job.blue.date"),
+  icons: blueIcons,
+  description: t("job.blue.desc"),
+};
 
 const sare = {
-    company: 'Sarenet',
-    date: t('job.sare.date'),
-    icons: sareIcons,
-    description: t('job.sare.desc') 
-}
+  company: "Sarenet",
+  date: t("job.sare.date"),
+  icons: sareIcons,
+  description: t("job.sare.desc"),
+};
 
 const seid = {
-    company: 'Deusto SEIDOR',
-    date: t('job.seid.date'),
-    icons: seidIcons,
-    description: t('job.seid.desc')
-}
+  company: "Deusto SEIDOR",
+  date: t("job.seid.date"),
+  icons: seidIcons,
+  description: t("job.seid.desc"),
+};
 ---
 
-<section class="flex w-full flex-col min-h-[80vh] mb-10">
-    <section
-        id="cv"
-        class="w-full h-fit py-12 border-t border-t-blue-50 flex justify-between"
+<section class="flex w-full flex-col h-[100%] md:min-h-[80vh] mb-10">
+  <section
+    id="cv"
+    class="w-full h-fit py-12 border-t border-t-blue-50 flex justify-between"
+  >
+    <h3
+      class="w-fit h-fit text-4xl md:text-5xl font-medium text-[var(--white)] mb-6 ml-4"
     >
-        <h3
-            class="w-fit h-fit text-4xl md:text-5xl font-medium text-[var(--white)] mb-6 ml-4"
-        >
-            {t('job.title')}
-        </h3>
-        <a href="pdf/CV_Iria_Ramos.pdf" download="CV_Iria_Ramos.pdf">
-            <button
-                class="p-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
-                        dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)]  dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
-                > {t('job.btn')} </button
-            >
-        </a>
-    </section>
-    <div
-        class="grid grid-rows-3 gap-x-4 gap-y-6 mx-auto top-8
-         sm:grid-rows-3 lg:grid-rows-3
-         auto-rows-fr"
-    >
-        <Job job={blue}/>
-        <Job job={sare}/>
-        <Job job={seid}/>
-    </div>
+      {t("job.title")}
+    </h3>
+    <a href="pdf/CV_Iria_Ramos.pdf" download="CV_Iria_Ramos.pdf">
+      <button
+        class="p-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
+                        dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)] dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
+      >
+        {t("job.btn")}
+      </button>
+    </a>
+  </section>
+  <div
+    class="grid gap-x-4 gap-y-6 mx-auto top-8
+            sm:grid-cols-1 lg:grid-cols-1"
+  >
+    <Job job={blue} />
+    <Job job={sare} />
+    <Job job={seid} />
+  </div>
 </section>
