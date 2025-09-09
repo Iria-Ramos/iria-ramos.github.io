@@ -1,19 +1,30 @@
 ---
 export interface Props {
-    icon: string;
+  icon: string;
 }
 const { icon } = Astro.props;
 ---
 
-<div class="h-fit w-fit rounded-2xl bg-blue-100/50 dark:bg-[#0d375a] border-2 border-blue-300 dark:border-[#114978] pl-2.5 pr-2.5 flex items-center gap-2">
-    <img
-        src={`/svg/${icon}.svg`}
-        alt={icon}
-        title={icon.charAt(0).toUpperCase() + icon.slice(1)}
-        class="h-5 w-auto object-contain transition-transform group-hover:scale-150"
-        width="20"
-        height="20"
-        loading="lazy"
-    />
-    <p>{icon.charAt(0).toUpperCase() + icon.slice(1)}</p>
+<div
+  class="h-fit w-fit rounded-2xl group bg-blue-100/50 dark:bg-[#0d375a] border-2 border-blue-300 dark:border-[#114978] pl-2.5 pr-2.5 flex items-center gap-2"
+>
+  <img
+    src={`/svg/light/${icon}.svg`}
+    alt={icon}
+    title={icon.charAt(0).toUpperCase() + icon.slice(1)}
+    class="h-5 w-auto object-contain transition-transform dark:hidden"
+    width="20"
+    height="20"
+    loading="lazy"
+  />
+  <img
+    src={`/svg/dark/${icon}.svg`}
+    alt={icon}
+    title={icon.charAt(0).toUpperCase() + icon.slice(1)}
+    class="h-5 w-auto object-contain transition-transform hidden dark:block"
+    width="20"
+    height="20"
+    loading="lazy"
+  />
+  <p>{icon.charAt(0).toUpperCase() + icon.slice(1)}</p>
 </div>

@@ -15,8 +15,8 @@ const languages = [
   "mySQL",
   "postgreSQL",
   "mongoDB",
-  "mariaDB"
-]
+  "mariaDB",
+];
 
 const technologies = [
   "astro",
@@ -28,7 +28,6 @@ const technologies = [
   "angular",
   "django",
   "ionic",
-  
 ];
 
 const lang = getLangFromUrl(Astro.url);
@@ -36,57 +35,78 @@ const t = useTranslations(lang);
 ---
 
 <section id="home" class="flex flex-row flex-wrap ml-4 h-[100%] md:h-[80vh]">
-    <article>
-        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">
-            {t('home.title')} 
-        </h2>
-        <div class="flex flex-row justify-between items-center">
-            <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
-                {t('home.job')}
-            </h3>
-            <section class="-mt-6">
-                <SocialIcons />
-            </section>
-        </div>
-        <p>
-            {t('home.desc')}
-        </p>
-    </article>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto mt-10">
-        <Box position="center">
-            <div class="grid grid-cols-4 grid-rows-3">
-                {languages.map((lan) => (
-                    <div class="flex flex-col h-fit items-center gap-1 group m-5">
-                    <img
-                        src={`/svg/${lan}.svg`}
-                        alt={lan}
-                        title={lan.charAt(0).toUpperCase() + lan.slice(1)}
-                        class="h-7 w-auto object-contain transition-transform group-hover:scale-150"
-                        width="30"
-                        height="30"
-                        loading="lazy"
-                    />
-                    </div>
-                ))}
-            </div>
-        </Box>
-        <Box position="center">
-            <div class="grid grid-cols-3 grid-rows-2">
-                {technologies.map((tech) => (
-                    <div class="flex flex-col h-fit items-center gap-1 group m-5">
-                    <img
-                        src={`/svg/${tech}.svg`}
-                        alt={tech}
-                        title={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                        class="h-7 w-auto object-contain transition-transform group-hover:scale-150"
-                        width="30"
-                        height="30"
-                        loading="lazy"
-                    />
-                    
-                    </div>
-                ))}
-            </div>
-        </Box>
+  <article>
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">
+      {t("home.title")}
+    </h2>
+    <div class="flex flex-row justify-between items-center">
+      <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
+        {t("home.job")}
+      </h3>
+      <section class="-mt-6">
+        <SocialIcons />
+      </section>
     </div>
+    <p>
+      {t("home.desc")}
+    </p>
+  </article>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto mt-10">
+    <Box position="center">
+      <div class="grid grid-cols-4 grid-rows-3">
+        {
+          languages.map((lan) => (
+            <div class="flex flex-col h-fit items-center gap-1 group m-5">
+              <img
+                src={`/svg/light/${lan}.svg`}
+                alt={lan}
+                title={lan.charAt(0).toUpperCase() + lan.slice(1)}
+                class="h-7 w-auto object-contain transition-transform hover:scale-150 dark:hidden"
+                width="30"
+                height="30"
+                loading="lazy"
+              />
+              <img
+                src={`/svg/dark/${lan}.svg`}
+                alt={lan}
+                title={lan.charAt(0).toUpperCase() + lan.slice(1)}
+                class="h-7 w-auto object-contain transition-transform hover:scale-150 hidden dark:block"
+                width="30"
+                height="30"
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </Box>
+    <Box position="center">
+      <div class="grid grid-cols-3 grid-rows-2">
+        {
+          technologies.map((tech) => (
+            <div class="flex flex-col h-fit items-center gap-1 m-5">
+              <img
+                src={`/svg/light/${tech}.svg`}
+                alt={tech}
+                title={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                class="h-7 w-auto object-contain transition-transform hover:scale-150 dark:hidden"
+                width="30"
+                height="30"
+                loading="lazy"
+              />
+              <img
+                src={`/svg/dark/${tech}.svg`}
+                alt={tech}
+                title={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                class="h-7 w-auto object-contain transition-transform hover:scale-150 hidden dark:block"
+                width="30"
+                height="30"
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </Box>
+  </div>
 </section>
