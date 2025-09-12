@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="flex justify-start gap-2">
@@ -45,7 +49,7 @@
   <!-- Email -->
   <a
     target="_blank"
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=iriar.varela@gmail.com&su=Hello Iria"
+    href=`https://mail.google.com/mail/?view=cm&fs=1&to=iriar.varela@gmail.com&su=${t("mail.hello")}`
     aria-label="Email"
     class="p-2 rounded-lg  bg-[var(--white-icon-tr)] text-[var(--white)] opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
             dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)]  dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"

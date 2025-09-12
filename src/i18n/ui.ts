@@ -38,6 +38,8 @@ export const ui = {
     'con.mess': 'Message',
     'con.send': 'Send',
     'con.thanks': 'Thank you for your message!',
+    'mail.hello': 'Hello Iria,'
+
   },
   es: {
     'nav.home': 'Perfil',
@@ -71,5 +73,6 @@ export const ui = {
     'con.mess': 'Mensaje',
     'con.send': 'Enviar',
     'con.thanks': '¡Gracias por tu mensaje!',
+    'mail.hello': 'Hola Iria,'
   },
 } as const;
