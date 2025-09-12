@@ -5,50 +5,53 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="contact" class="w-full min-h-[550px] md:min-h-[60vh] py-12 border-t border-t-blue-50">
+<section
+  id="contact"
+  class="w-full min-h-[550px] md:min-h-[60vh] py-12 border-t border-t-blue-50"
+>
   <div class="max-w-5xl mx-auto">
     <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
-      {t('con.title')}
+      {t("con.title")}
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="text-[var(--white-icon)]">
         <p class="mb-4">
-          {t('con.desc')}
+          {t("con.desc")}
         </p>
         <div class="flex items-center gap-2">
           <span>
-            {t('con.loc')}
+            {t("con.loc")}
           </span>
           <span class="text-[var(--white)]">
-            {t('con.loc.place')}
+            {t("con.loc.place")}
           </span>
         </div>
       </div>
 
-      <div>
+      <div class="relative">
         <form
           id="contact-form"
-          action="https://formspree.io/f/mpwjndng"
+          action="https://formspree.io/f/..."
           method="POST"
           class="flex flex-col gap-4"
         >
           <input
             type="text"
             name="from_name"
-            placeholder={t('con.name')}
+            placeholder={t("con.name")}
             required
             class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <input
             type="email"
             name="reply_to"
-            placeholder={t('con.email')}
+            placeholder={t("con.email")}
             required
             class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <textarea
             name="message"
-            placeholder={t('con.mess')}
+            placeholder={t("con.mess")}
             rows="6"
             required
             class="px-4 py-2 bg-blue-100/35 dark:bg-blue-100/10 dark:border-[#a1bdd7] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
@@ -56,17 +59,29 @@ const t = useTranslations(lang);
           <button
             type="submit"
             class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-blue-100
-            dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)]  dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
+      dark:text-[var(--white-icon)] dark:hover:text-white duration-300 ease-in-out dark:border dark:border-[var(--white-icon-tr)] dark:bg-blue-100/35 dark:hover:bg-[var(--white-icon-tr)]"
           >
-            {t('con.send')}
+            {t("con.send")}
           </button>
         </form>
+
+        <!-- Loader overlay -->
         <div
-          id="form-message"
-          class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
+          id="form-loader"
+          class="absolute inset-0 bg-blue-950/35 rounded-lg align-middle items-center justify-center hidden"
         >
-          {t('con.thanks')}
+          <div
+            class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"
+          >
+          </div>
         </div>
+      </div>
+
+      <div
+        id="form-message"
+        class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
+      >
+        {t("con.thanks")}
       </div>
     </div>
   </div>
@@ -75,9 +90,12 @@ const t = useTranslations(lang);
 <script type="module" is:inline>
   const form = document.getElementById("contact-form");
   const formMessage = document.getElementById("form-message");
+  const loader = document.getElementById("form-loader");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    loader.classList.remove("hidden");
+    loader.classList.add("flex");
     const formData = new FormData(form);
 
     try {
@@ -98,12 +116,15 @@ const t = useTranslations(lang);
     } catch (error) {
       console.error("Error:", error);
       alert("There was a problem sending your message.");
+    } finally {
+      loader.classList.remove("flex");
+      loader.classList.add("hidden");
     }
   });
 </script>
 <style>
-    #contact {
-        display: flex;
-        height: 60vh;
-    }
+  #contact {
+    display: flex;
+    height: 60vh;
+  }
 </style>
